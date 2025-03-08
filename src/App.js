@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTasks, toggleTask, addTask } from "./store/tasksSlice";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import './App.css';
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -24,14 +25,19 @@ const TaskList = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <input
+    <div className="background">
+      <div className="input_box">
+      <input className='input'
         type="text"
         value={newTask}
         onChange={(e) => setNewTask(e.target.value)}
         placeholder="Введите новую задачу"
       />
-      <button onClick={handleAddTask}>Добавить</button>
+      <button className='input_btn' onClick={handleAddTask}>Добавить</button>
+      </div>
+      <h2 className='text'>
+        Список задач:
+      </h2>
       <ul>
         {items.map((task) => (
           <li key={task.id} onClick={() => dispatch(toggleTask(task.id))} style={{ cursor: "pointer" }}>
